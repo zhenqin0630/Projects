@@ -1,0 +1,14 @@
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\bin\Release\netcoreapp2.1\PostApplication.deps.json
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\bin\Release\netcoreapp2.1\PostApplication.runtimeconfig.json
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\bin\Release\netcoreapp2.1\PostApplication.runtimeconfig.dev.json
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\bin\Release\netcoreapp2.1\PostApplication.dll
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\bin\Release\netcoreapp2.1\PostApplication.pdb
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Release\netcoreapp2.1\PostApplication.csprojAssemblyReference.cache
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Release\netcoreapp2.1\PostApplication.csproj.CoreCompileInputs.cache
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Release\netcoreapp2.1\PostApplication.RazorAssemblyInfo.cache
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Release\netcoreapp2.1\PostApplication.RazorAssemblyInfo.cs
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Release\netcoreapp2.1\PostApplication.AssemblyInfoInputs.cache
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Release\netcoreapp2.1\PostApplication.AssemblyInfo.cs
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Release\netcoreapp2.1\PostApplication.RazorTargetAssemblyInfo.cache
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Release\netcoreapp2.1\PostApplication.dll
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Release\netcoreapp2.1\PostApplication.pdb

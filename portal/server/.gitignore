@@ -1,0 +1,11 @@
+
+# npm 
+package-lock.json
+
+node_modules
+
+log
+
+# vs code
+.vscode
+.DS_Store

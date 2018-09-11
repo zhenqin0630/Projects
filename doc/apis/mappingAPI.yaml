@@ -1,0 +1,200 @@
+swagger: '2.0'
+info:
+  description: >-
+    Recommondationリソース検索 & Recommondation Demand検索
+  version: 1.0.0
+  title: Mapping Service
+  contact:
+    email: plandl@cn.ibm.com
+host: cnwyzc0068.cloud.dst.ibm.com
+basePath: /v2
+tags:
+  - name: Mapping
+    description: Recommondationリソース検索 & Recommondation Demand検索
+schemes:
+  - http
+paths:
+  
+  /Mapping/resourceRecommondation:
+    get:
+      tags:
+        - Mapping
+      summary: API
+      description: '指定されるdemandに対してMappingリソース情報を返す'
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: body
+          name: body
+          description: demand info input
+          required: true
+          schema:
+            $ref: '#/definitions/inputDemandInfo'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/resourceInfoResult'
+        '400':
+          description: error 
+  /Mapping/demandRecommondation:
+    get:
+      tags:
+        - Mapping
+      summary: API
+      description: '指定されるresource情報に対してMappingされるdemand情報を返す'
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: body
+          name: body
+          description: resource info input
+          required: true
+          schema:
+            $ref: '#/definitions/inputResourceInfo'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+           $ref: '#/definitions/demandInfoResult'
+        '400':
+          description: error
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  inputDemandInfo:
+    type: "object"
+    properties:
+      request_month:
+        type: string
+        example: "201809"
+      request_band_Low:
+        type: string
+        example: "6B"
+      request_band_high:
+        type: string
+        example: "7B"
+      request_TechSkill1:
+        type: string
+        example: "Node.JS"
+      request_TechSkill2:
+        type: string
+        example: "VUE.JS"
+      request_TechSkill3:
+        type: string
+        example: "DB2"
+      request_language:
+        type: string
+        example: "Japanese"
+
+  resourceInfoResult:
+    type: array
+    items:
+      $ref: "#/definitions/resourceInfo"
+      
+  resourceInfo:
+    type: object
+    properties:
+        resource_BU:
+          type: string
+          example: "CIC JP CSU Industry Secoter"
+        resource_name:
+          type: string
+          example: "zhang xiao ming"
+        resource_noteid: 
+          type: string  
+          example: "xiao ming zhang/China/IBM"
+        resource_manager:
+          type: string   
+          example: "ying yang/China/IBM"
+        contact: 
+          type: string
+          example: "ying yang/China/IBM"
+        contact_tel:
+          type: string 
+          example: "15998581414"
+        resource_band:
+          type: string 
+          example: "7A"
+        resource_skill:
+          type: string
+          example: "JAVA-Core"
+        resource_language:
+          type: string
+          example: "Japanese"
+        resource_availdate: 
+          type: string
+          example: "20181020"
+        resource_current_Project:
+          type: string
+          example: "NCC report project"
+        resource_current_ProjectManager: 
+          type: string
+          example: "peng dl lan/China/IBM"
+          
+  inputResourceInfo:
+    type: object
+    properties:
+      avail_date: 
+        type: string   
+        example: "20180905"
+      resource_band: 
+        type: string   
+        example: "6B"
+      resource_TechSkill1:  
+        type: string   
+        example:  "angularjs"
+      resource_TechSkill2:  
+        type: string   
+        example:  "Spring boot"
+      resource_TechSkill3:
+        type: string   
+        example:  "JAVA"
+      resource_language:   
+        type: string   
+        example: "Japanese"
+      
+  demandInfoResult:
+    type: array
+    items:
+      $ref: "#/definitions/demandInfo"
+      
+  demandInfo:
+    type: object
+    properties:
+      project_BU: 
+        type: string   
+        example: "CIC JP CSU Industry"  
+      project_name: 
+        type: string   
+        example: "mazada new system convertion"
+      project_manager_noteid: 
+        type: string   
+        example: "xiao feng zhang/China/IBM"
+      contact_tel: 
+        type: string   
+        example: "15998581414"
+      requirement_band_high: 
+        type: string   
+        example: "7B"
+      requirement_band_low: 
+        type: string   
+        example: "6B"
+      requirement_language: 
+        type: string   
+        example: "japanese"  
+      requirement_month: 
+        type: string   
+        example: "201810"  
+      requirement_skill: 
+        type: string   
+        example: "JAVA/Cobol"  
+        
+externalDocs:
+  description: ''
+  url: 'https://XXXXXXX.mybluemix.net'

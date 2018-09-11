@@ -1,0 +1,352 @@
+swagger: '2.0'
+info:
+  description: API详细介绍
+  version: '1.0'
+  title: 需求API文档
+  termsOfService: 'http://blog.didispace.com/'
+host: 'localhost:8090'
+basePath: /
+tags:
+  - name: Demand API
+    description: Demand Controller
+paths:
+  /demand/add:
+    post:
+      tags:
+        - Demand API
+      summary: 添加需求
+      description: 添加一条需求信息
+      operationId: addDemandUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - in: body
+          name: demand
+          description: 需求实体Demand
+          required: true
+          schema:
+            $ref: '#/definitions/Demand'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: integer
+            format: int32
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /demand/del/{id}:
+    delete:
+      tags:
+        - Demand API
+      summary: 删除需求
+      description: 根据id物理删除需求
+      operationId: delDemandUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - in: path
+          name: id
+          description: 需求id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: integer
+            format: int32
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /demand/find/{pageNum}:
+    get:
+      tags:
+        - Demand API
+      summary: 需求一览显示
+      description: 分页显示需求
+      operationId: findDemandUsingGET
+      consumes:
+        - application/json
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - in: path
+          name: pageNum
+          description: 页号
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Demand'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /demand/get/{id}:
+    get:
+      tags:
+        - Demand API
+      summary: 查询需求
+      description: 根据id查询需求信息
+      operationId: getDemandByidUsingGET
+      consumes:
+        - application/json
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - in: path
+          name: id
+          description: 需求id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Demand'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /demand/search:
+    get:
+      tags:
+        - Demand API
+      summary: 模糊查询
+      description: 多字段模糊查询
+      operationId: searchDemandUsingGET
+      consumes:
+        - application/json
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: createtime.nanos
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: updatetime.nanos
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: id
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: skill
+          in: query
+          required: false
+          type: string
+        - name: language
+          in: query
+          required: false
+          type: string
+        - name: location
+          in: query
+          required: false
+          type: string
+        - name: industry
+          in: query
+          required: false
+          type: string
+        - name: bandLow
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: bandHigh
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: onsite
+          in: query
+          required: false
+          type: boolean
+        - name: parttime
+          in: query
+          required: false
+          type: boolean
+        - name: quantity
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: startTime
+          in: query
+          required: false
+          type: string
+          format: date
+        - name: endTime
+          in: query
+          required: false
+          type: string
+          format: date
+        - name: status
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: comment
+          in: query
+          required: false
+          type: string
+        - name: updater
+          in: query
+          required: false
+          type: string
+        - in: body
+          name: demand
+          description: 需求实体Demand
+          required: true
+          schema:
+            $ref: '#/definitions/Demand'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Demand'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /demand/upd:
+    put:
+      tags:
+        - Demand API
+      summary: 更新需求
+      description: 更新选择的需求信息
+      operationId: updDemandUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - in: body
+          name: demand
+          description: 需求实体Demand
+          required: true
+          schema:
+            $ref: '#/definitions/Demand'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: integer
+            format: int32
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+definitions:
+  Demand:
+    type: object
+    properties:
+      bandHigh:
+        type: integer
+        format: int32
+      bandLow:
+        type: integer
+        format: int32
+      comment:
+        type: string
+      createtime:
+        $ref: '#/definitions/Timestamp'
+      endTime:
+        type: string
+        format: date
+      id:
+        type: integer
+        format: int32
+      industry:
+        type: string
+      language:
+        type: string
+      location:
+        type: string
+      onsite:
+        type: boolean
+      parttime:
+        type: boolean
+      quantity:
+        type: integer
+        format: int32
+      skill:
+        type: string
+      startTime:
+        type: string
+        format: date
+      status:
+        type: integer
+        format: int32
+      updater:
+        type: string
+      updatetime:
+        $ref: '#/definitions/Timestamp'
+  Timestamp:
+    type: object
+    properties:
+      date:
+        type: integer
+        format: int32
+      day:
+        type: integer
+        format: int32
+      hours:
+        type: integer
+        format: int32
+      minutes:
+        type: integer
+        format: int32
+      month:
+        type: integer
+        format: int32
+      nanos:
+        type: integer
+        format: int32
+      seconds:
+        type: integer
+        format: int32
+      time:
+        type: integer
+        format: int64
+      timezoneOffset:
+        type: integer
+        format: int32
+      year:
+        type: integer
+        format: int32

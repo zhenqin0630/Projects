@@ -1,0 +1,279 @@
+swagger: '2.0'
+info:
+  description:  >-
+    This is `Post Application Service`'s api document.
+    You can use this service to `create` post application/`manage` the application.
+  version: 1.0.0
+  title: Post Application Service
+  contact:
+    email: dlwangac@cn.ibm.com 
+host: cnwyzc0068.cloud.dst.ibm.com
+basePath: /v2
+tags:
+  - name: Post Application
+    description: Post application service 
+schemes:
+  - https
+  - http
+paths:
+ 
+  '/postapplication/application/{demandNO}/{resourceNO}':
+    put:
+      tags:
+        - permission
+      summary: 申请职位
+      description: 创建申请书，返回申请书创建结果
+      produces:
+        - application/json
+      parameters:
+        - name: demandNO
+          in: path
+          description: 需求编号
+          required: true
+          type: string
+        - name: resourceNO
+          in: path
+          description: 资源编号
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 申请书创建成功
+          schema:
+            $ref: '#/definitions/ReturnResult'
+      security:
+        - api_key: []
+  /postapplication/application/{applicationNO}:
+    get:
+      tags:
+        - permission
+      summary: 获取指定编号的申请书
+      description: ''
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: applicationNO
+          in: path
+          description: 申请书编号
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/PostApplication'
+        '404':
+          description: applicationNO not found
+          schema:
+            $ref: '#/definitions/ReturnResult'
+    delete:
+      tags:
+        - permission
+      summary: 删除指定编号的申请书
+      description: ''
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: applicationNO
+          in: path
+          description: 申请书编号
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReturnResult'
+        '404':
+          description: applicationNO not found
+          schema:
+            $ref: '#/definitions/ReturnResult'
+  '/postapplication/application/accept/{applicationNO}':
+    post:
+      tags:
+        - permission
+      summary: 接受申请
+      description: 返回接受操作结果
+      produces:
+        - application/json
+      parameters:
+        - name: applicationNO
+          in: path
+          description: 申请书编号
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReturnResult'
+        '404':
+          description: applicationNO not found
+          schema:
+            $ref: '#/definitions/ReturnResult'
+  '/postapplication/application/reject/{applicationNO}':
+    post:
+      tags:
+        - permission
+      summary: 拒绝申请
+      description: 返回拒绝操作结果
+      produces:
+        - application/json
+      parameters:
+        - name: applicationNO
+          in: path
+          description: 申请书编号
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReturnResult'
+        '404':
+          description: applicationNO not found
+  /postapplication/demand/{demandNO}:
+    get:
+      tags:
+        - permission
+      summary: 获取指定需求的申请书
+      description: ''
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: demandNO
+          in: path
+          description: 需求编号
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/PostApplication'
+        '400':
+          description: Invalid demandNO
+    delete:
+      tags:
+        - permission
+      summary: 删除指定需求的申请书
+      description: ''
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: demandNO
+          in: path
+          description: 需求编号
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReturnResult'
+        '400':
+          description: Invalid demandNO
+  '/postapplication/resource/{resourceNO}':
+    get:
+      tags:
+        - permission
+      summary: 获取指定资源的申请书
+      description: 
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: resourceNO
+          in: path
+          description: 资源编号
+          required: true
+          type: string
+          maximum: 100
+          minimum: 1
+          format: email
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReturnResult'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: resourceNO not found
+    delete:
+      tags:
+        - permission
+      summary: 删除指定资源的申请书
+      description: 
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: resourceNO
+          in: path
+          description: 资源编号
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReturnResult'
+        '400':
+          description: Invalid ID supplied
+          schema:
+            $ref: '#/definitions/ReturnResult'
+        '404':
+          description: resourceNO not found
+          schema:
+            $ref: '#/definitions/ReturnResult'
+
+definitions:
+  ReturnResult:
+    type: object
+    properties:
+      code: 
+        type: integer
+        description: result code
+      message: 
+        type: string
+        description: result message
+  PostApplication:
+    type: object
+    properties:
+      ApplicationNo: 
+        type: integer
+        description: 申请书编号
+      DemandInfo: 
+        type: object
+        description: 需求信息
+        properties:
+          DemandNo: 
+            type: string
+            description: 需求编号
+
+      ResourceInfo: 
+        type: object
+        description: 资源信息
+        properties:
+          ResourceNo: 
+            type: string
+            description: 资源编号
+
+
+      ApplyDate: 
+        type: DateTime
+        description: 申请日期
+      Status: 
+        type: string
+        description: 状态
+      CloseDate: 
+        type: DateTime
+        description: 结单日期
+externalDocs:
+  description: ""
+  url: "https://XXXXXXX.mybluemix.net"

@@ -1,0 +1,11 @@
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\bin\Debug\netcoreapp2.0\PostApplication.deps.json
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\bin\Debug\netcoreapp2.0\PostApplication.runtimeconfig.json
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\bin\Debug\netcoreapp2.0\PostApplication.runtimeconfig.dev.json
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\bin\Debug\netcoreapp2.0\PostApplication.dll
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\bin\Debug\netcoreapp2.0\PostApplication.pdb
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Debug\netcoreapp2.0\PostApplication.csprojResolveAssemblyReference.cache
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Debug\netcoreapp2.0\PostApplication.csproj.CoreCompileInputs.cache
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Debug\netcoreapp2.0\PostApplication.AssemblyInfoInputs.cache
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Debug\netcoreapp2.0\PostApplication.AssemblyInfo.cs
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Debug\netcoreapp2.0\PostApplication.dll
+C:\MyWork\Project\Cloud Virtual Project\src\PostApplication\PostApplication\obj\Debug\netcoreapp2.0\PostApplication.pdb

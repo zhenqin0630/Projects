@@ -1,0 +1,234 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: 资源发布模块API
+  description: 通过以下API接口访问资源发布模块
+schemes:
+  - http
+host: cloudvitrualproject
+consumes:
+  - application/json
+  - appication/xml
+produces:
+  - appication/xml
+  - application/json
+paths:
+  '/resource/id/{id}':
+    get:
+      tags:
+        - resource/id
+      summary: 根据个人ID查询资源信息
+      parameters:
+        - $ref: '#/parameters/id'
+      responses:
+        '200':
+          description: 返回查询到的资源信息列表
+          schema:
+            $ref: '#/definitions/Resources'
+        '404':
+          $ref: '#/responses/notFoundById'
+    delete:
+      tags:
+        - resource/id
+      summary: 根据个人ID删除资源信息
+      parameters:
+        - $ref: '#/parameters/id'
+      responses:
+        '200':
+          description: 返回成功删除资源的个数
+          schema:
+            properties:
+              delcount:
+                type: number
+        '404':
+          $ref: '#/responses/notFoundById'
+  '/resource/pem/{pem}':
+    get:
+      tags:
+        - resource/pem
+      summary: 根据老板查询资源信息
+      parameters:
+        - $ref: '#/parameters/pem'
+      responses:
+        '200':
+          description: 返回查询到的资源信息列表
+          schema:
+            $ref: '#/definitions/Resources'
+        '404':
+          $ref: '#/responses/notFoundById'
+    delete:
+      tags:
+        - resource/pem
+      summary: 根据老板批量删除资源信息
+      parameters:
+        - $ref: '#/parameters/pem'
+      responses:
+        '200':
+          description: 返回成功删除资源的个数
+          schema:
+            properties:
+              delcount:
+                type: number
+        '404':
+          $ref: '#/responses/notFoundById'
+  '/resource/project/{porject}':
+    get:
+      tags:
+        - resource/project
+      summary: 根据项目名称查询资源信息
+      parameters:
+        - $ref: '#/parameters/project'
+      responses:
+        '200':
+          description: 返回查询到的资源信息列表
+          schema:
+            $ref: '#/definitions/Resources'
+        '404':
+          $ref: '#/responses/notFoundById'
+    delete:
+      tags:
+        - resource/project
+      summary: 根据项目名称批量删除资源信息
+      parameters:
+        - $ref: '#/parameters/project'
+      responses:
+        '200':
+          description: 返回成功删除资源的个数
+          schema:
+            properties:
+              delcount:
+                type: number
+        '404':
+          $ref: '#/responses/notFoundById'
+  /resourceSearchByConditions:
+    post:
+      tags:
+        - resource
+      summary: 根据复杂条件查询资源信息
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/searchCondition'
+      responses:
+        '200':
+          description: info of the resource
+          schema:
+            $ref: '#/definitions/Resources'
+        '404':
+          $ref: '#/responses/notFoundById'
+  /resource:
+    post:
+      tags:
+        - resource
+      summary: 添加新资源
+      parameters:
+        - in: body
+          name: body
+          description: Resource object that needs to be added to the system
+          required: true
+          schema:
+            $ref: '#/definitions/ResourceInfo'
+      responses:
+        '200':
+          description: 返回成功增加资源的个数
+          schema:
+            properties:
+              delcount:
+                type: number
+    put:
+      tags:
+        - resource
+      summary: 更新资源信息
+      parameters:
+        - $ref: '#/parameters/searchbyconditions'
+      responses:
+        '200':
+          description: 返回成功更新资源的个数
+          schema:
+            properties:
+              delcount:
+                type: number
+definitions:
+  searchCondition:
+    type: object
+    properties:
+      request_month:
+        type: string
+      request_band_Low:
+        type: string
+      request_band_high:
+        type: string
+      request_TechSkill:
+        type: array
+        items:
+          type: string
+      request_language:
+        type: string
+  ResourceInfo:
+    type: object
+    properties:
+      resource_BU:
+        type: string
+      resource_name:
+        type: string
+      resource_noteid:
+        type: string
+      resource_manager:
+        type: string
+      contact:
+        type: number
+      contact_tel:
+        type: string
+      resource_band:
+        type: string
+      resource_skill:
+        type: string
+      resource_language:
+        type: string
+      resource_availdate:
+        type: string
+      resource_current_Project:
+        type: string
+      resource_current_ProjectManager:
+        type: string
+  ResourcesInfoArray:
+    type: array
+    items:
+      $ref: '#/definitions/ResourceInfo'
+  Resources:
+    type: object
+    properties:
+      message_cd:
+        type: string
+      result_cd:
+        type: string
+      res_data:
+        $ref: '#/definitions/ResourceInfo'
+parameters:
+  id:
+    name: id
+    in: path
+    required: true
+    type: string
+  pem:
+    name: pem
+    in: path
+    required: true
+    type: string
+  project:
+    name: porject
+    in: path
+    required: true
+    type: string
+  searchbyconditions:
+    name: searchbyconditions
+    in: path
+    required: true
+    type: string
+responses:
+  createFaiure:
+    description: 资源添加失败
+  notFoundById:
+    description: 没有找到对应的资源信息

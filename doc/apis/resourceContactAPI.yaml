@@ -1,0 +1,226 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: 资源联络模块API
+  description: 通过以下API接口访问资源联络模块
+schemes:
+  - http
+host: cloudvitrualproject
+consumes:
+  - application/json
+  - appication/xml
+produces:
+  - appication/xml
+  - application/json
+paths:
+  '/resource/contact/findByContactNo/{contactNo}':
+    get:
+      tags:
+        - resource/contact
+      summary: 根据联络资源番号查询资源信息
+      operationId: getInventory
+      parameters:
+        - name: contactNo
+          in: path
+          type: string
+          required: true
+          description: "contactNo of contactResource to return"
+      responses:
+        200:
+          description: 返回查询到的资源联络信息列表
+          schema:
+            $ref: '#/definitions/Contact'
+        400:
+          description: "Invalid args supplied"
+        401:
+          description: "Unauthorized"
+        404:
+          description: "Data not found"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  /resource/contact/findByResourceNo/{resourceNo}:
+    get:
+      tags:
+        - resource/contact
+      summary: 根据资源番号查询资源信息
+      operationId: findByResourceNo
+      parameters:
+        - name: resourceNo
+          in: path
+          type: string
+          required: true
+          description: "resourceNo of contactResources to return"
+      responses:
+        200:
+          description: 返回查询到的资源联络信息列表
+          schema:
+            $ref: '#/definitions/Contacts'
+        400:
+          description: "Invalid args supplied"
+        401:
+          description: "Unauthorized"
+        404:
+          description: "Data not found"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  /resource/contact/findByProjectNo/{projectNo}:
+    get:
+      tags:
+        - resource/contact
+      summary: 根据案件番号查询资源信息
+      operationId: findByProjectNo
+      parameters:
+        - name: projectNo
+          in: path
+          type: string
+          required: true
+          description: "projectNo of contactResources to return"
+      responses:
+        200:
+          description: 返回查询到的资源联络信息列表
+          schema:
+            $ref: '#/definitions/Contacts'
+        400:
+          description: "Invalid args supplied"
+        401:
+          description: "Unauthorized"
+        404:
+          description: "Data not found"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  /resource/contact/create:
+    post:
+      tags:
+        - resource/contact
+      summary: 资源联络信息新规登陆以及邮件通知
+      parameters:
+        - in: body
+          name: body
+          description: Created contact object
+          required: true
+          schema:
+            $ref: '#/definitions/Contact'
+      responses:
+        200:
+          description: "successful operation"
+        401:
+          description: "Unauthorized"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  /resource/contact/cancel:
+    post:
+      tags:
+        - resource/contact
+      summary: 资源联络信息状态更新为取消以及邮件通知
+      parameters:
+        - name: contactNo
+          in: path
+          type: string
+          required: true
+          description: Update contactNo of object
+      responses:
+        200:
+          description: "successful operation"
+        401:
+          description: "Unauthorized"
+        404:
+          description: "Data not found"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  /resource/contact/confirm:
+    post:
+      tags:
+        - resource/contact
+      summary: 资源联络信息状态更新为取消以及邮件通知
+      parameters:
+        - name: contactNo
+          in: path
+          type: string
+          required: true
+          description: Update contactNo of object
+      responses:
+        200:
+          description: "successful operation"
+        401:
+          description: "Unauthorized"
+        404:
+          description: "Data not found"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  /resource/contact/delete:
+    delete:
+      tags:
+        - resource/contact
+      summary: 资源联络信息删除
+      operationId: deleteResourceContact
+      parameters:
+        - name: contactNo
+          in: path
+          type: string
+          required: true
+          description: Delete contactNo of object
+      responses:
+        200:
+          description: "successful operation"
+        401:
+          description: "Unauthorized"
+        404:
+          description: "Data not found"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+definitions:
+  Contact:
+    type: object
+    properties:
+      contactNo:
+        type: string
+      resouceNo:
+        type: string
+      projectNo:
+        type: string
+      requestDate:
+        type: string
+        format: yyyy/MM/dd
+      statusCode:
+        type: number
+      confirmDate:
+        type: string
+        format: yyyy/MM/dd
+      comments:
+        type: string
+      createUser:
+        type: string
+      createTime:
+        type: string
+        format: 'yyyy/MM/dd HH:mm:ss'
+      updateUser:
+        type: string
+      updateTime:
+        type: string
+        format: 'yyyy/MM/dd HH:mm:ss'
+  Contacts:
+    type: array
+    items:
+      $ref: '#/definitions/Contact'
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
